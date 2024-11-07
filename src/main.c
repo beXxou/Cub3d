@@ -5,54 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 09:53:54 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/06 15:51:51 by joschka          ###   ########.fr       */
+/*   Created: 2024/11/07 16:05:26 by joschka           #+#    #+#             */
+/*   Updated: 2024/11/07 18:35:24 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stdlib.h>
-#include "../minilibx-linux/mlx.h"
-#include "../libft/libft.h"
-#include <X11/keysym.h>
+#include "../include/cub3d.h"
 
-typedef struct s_data
+int	print_error(char *str, int errcode)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}	t_data;
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+	return (errcode);
+}
 
-int	handle_no_event(void *data)
+int	check_extension(char *path)
 {
-	/* This function needs to exist, but it is useless for the moment */
+	size_t	len;
+
+	len = ft_strlen(path);
+	if (path[len - 1] != 'b' || path[len - 2] != 'u'
+		|| path[len - 3] != 'c' || path[len - 4] != '.')
+		return (1);
+	return (0);
+}
+
+int	check_file(char *path)
+{
+	int	fd;
+
+	fd = open(path, __O_DIRECTORY);
+	if (fd > 0)
+	{
+		close(fd);
+		return (print_error(ERR_DIR, 1));
+	}
+	// close(fd);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		return(print_error(strerror(errno), errno));
+	close(fd);
+	if (check_extension(path))
+		return (print_error(ERR_CUB, 1));
+	return (0);
+}
+
+int	parsing(char *path, t_data *data)
+{
 	(void)data;
+	if (check_file(path))
+		return (1);
 	return (0);
 }
 
-int	handle_input(int keysym, t_data *data)
-{
-	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	return (0);
-}
-
-int main(void)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	data.mlx_ptr = mlx_init();
-	data.win_ptr = mlx_new_window(data.mlx_ptr, 800, 600, "Hello");
-	if (data.win_ptr == NULL)
-	{
-		free(data.win_ptr);
-		return (ft_printf("No Window"));
-	}
-	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
-	mlx_key_hook(data.win_ptr, &handle_input, &data);
-
-	mlx_loop(data.mlx_ptr);
-	// mlx_destroy_window(data.mlx_ptr, data.win_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
-	ft_printf("test\n");
+	if (argc != 2)
+		return (print_error(ERR_USAGE, 1));
+	if (parsing(argv[1], &data))
+		return (1);
 	return (0);
 }
