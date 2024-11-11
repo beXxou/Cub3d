@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   delete_and_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 16:05:26 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/11 17:41:35 by joschka          ###   ########.fr       */
+/*   Created: 2024/11/11 17:25:32 by joschka           #+#    #+#             */
+/*   Updated: 2024/11/11 17:41:42 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_array(char **arr)
+void	free_array(char **arr)
 {
 	int	i;
 
 	i = 0;
 	while (arr[i])
 	{
-		ft_printf("%s", arr[i]);
+		free(arr[i]);
 		i++;
 	}
+	free(arr);
+	arr = NULL;
 }
 
-
-int	main(int argc, char **argv)
+int	print_error(char *src, char *str, int errcode)
 {
-	t_data	data;
-
-	if (argc != 2)
-		return (print_error(NULL, ERR_USAGE, 1));
-	init(&data);
-	if (parsing(argv[1], &data))
-		return (1);
-	free_array(data.scene);
-	return (0);
+	ft_putstr_fd("Error\n", 2);
+	if (src)
+	{
+		ft_putstr_fd(src, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+	return (errcode);
 }
