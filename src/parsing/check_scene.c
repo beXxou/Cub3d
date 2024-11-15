@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:32:19 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/11 17:41:56 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/14 14:56:14 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	skip_whitespace(char *str)
+int	skip_whitespace(char *str)
 {
 	int	i;
 
@@ -38,7 +38,8 @@ int	check_elements(char **scene)
 			|| !ft_strncmp(&scene[i][j], "EA", 2)
 			|| !ft_strncmp(&scene[i][j], "F", 1)
 			|| !ft_strncmp(&scene[i][j], "C", 1)
-			|| !ft_strncmp(&scene[i][j], "1", 1))
+			|| !ft_strncmp(&scene[i][j], "1", 1)
+			|| !ft_strncmp(&scene[i][j], "0", 1))
 			i++;
 		else
 			return (print_error(NULL, ERR_ELEMENT, 1));
@@ -77,7 +78,7 @@ int	map_last(char **scene)
 		if (!strncmp(&scene[i][j], "1", 1))
 			mapflag = 1;
 		if (mapflag && strncmp(&scene[i][j], "1", 1))
-			return (print_error(NULL, ERR_LAST, 1));
+			return (print_error(ERR_LAST, ERR_LABORD, 1));
 		if (mapflag && check_chars(&scene[i][j]))
 			return (print_error(NULL, ERR_CHAR, 1));
 		i++;

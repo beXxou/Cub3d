@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:27 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/11 17:41:53 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/14 13:19:27 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,49 +70,49 @@ static void	ft_simpstrcpy(char *dest, char *src)
 	dest[i] = '\0';
 }
 
-static int	fill_scene(t_data *data)
+static int	fill_scene(t_scenery *scenery)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	line = get_next_line(data->fd);
+	line = get_next_line(scenery->fd);
 	while (line)
 	{
 		if (!emptystr(line))
 		{
-			data->scene[i] = malloc(ft_strlen(line) + 1 * sizeof(char));
-			if (!data->scene[i])
+			scenery->scene[i] = malloc(ft_strlen(line) + 1 * sizeof(char));
+			if (!scenery->scene[i])
 			{
-				free_array(data->scene);
+				free_array(scenery->scene);
 				return (print_error(NULL, strerror(errno), errno));
 			}
-			ft_simpstrcpy(data->scene[i], line);
+			ft_simpstrcpy(scenery->scene[i], line);
 			i++;
 		}
 		free(line);
-		line = get_next_line(data->fd);
+		line = get_next_line(scenery->fd);
 	}
-	data->scene[i] = NULL;
-	close(data->fd);
+	scenery->scene[i] = NULL;
+	close(scenery->fd);
 	return (0);
 }
 
-int	get_scene(t_data *data)
+int get_scene(t_scenery *scenery)
 {
-	data->lcount = get_linenumber(data->s_path);
-	data->scene = malloc((data->lcount + 1) * sizeof(char *));
-	if (!data->scene)
+	scenery->lcount = get_linenumber(scenery->s_path);
+	scenery->scene = malloc((scenery->lcount + 1) * sizeof(char *));
+	if (!scenery->scene)
 	{
 		print_error(NULL, strerror(errno), errno);
 		return (1);
 	}
-	data->fd = open(data->s_path, O_RDONLY);
-	if (data->fd == -1)
-		return (print_error(data->s_path, strerror(errno), errno));
-	if (fill_scene(data))
+	scenery->fd = open(scenery->s_path, O_RDONLY);
+	if (scenery->fd == -1)
+		return (print_error(scenery->s_path, strerror(errno), errno));
+	if (fill_scene(scenery))
 	{
-		free(data->scene);
+		free(scenery->scene);
 		return (1);
 	}
 	return (0);

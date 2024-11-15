@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:00:57 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/11 17:41:49 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/15 13:25:51 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_extension(char *path)
+static int	check_cub_extension(char *path)
 {
 	size_t	len;
 
@@ -23,7 +23,7 @@ static int	check_extension(char *path)
 	return (0);
 }
 
-static int	check_file(char *path)
+static int	check_cub_file(char *path)
 {
 	int	fd;
 
@@ -37,23 +37,25 @@ static int	check_file(char *path)
 	if (fd == -1)
 		return (print_error(path, strerror(errno), errno));
 	close(fd);
-	if (check_extension(path))
+	if (check_cub_extension(path))
 		return (print_error(path, ERR_CUB, 1));
 	return (0);
 }
 
 int	parsing(char *path, t_data *data)
 {
-	if (check_file(path))
+	if (check_cub_file(path))
 		return (1);
-	data->s_path = path;
-	if (get_scene(data))
+	data->scenery.s_path = path;
+	if (get_scene(&data->scenery))
 		return (1);
-	if (check_elements(data->scene) || map_last(data->scene))
+	if (check_elements(data->scenery.scene) 
+		|| map_last(data->scenery.scene)
+		|| get_textures(data))
 	{
-		free_array(data->scene);
+		free_array(data->scenery.scene);
 		return (1);
 	}
-	print_array(data->scene);
+	print_array(data->scenery.scene);
 	return (0);
 }
