@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 16:05:26 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/15 13:24:41 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:15:35 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,18 @@ void	print_array(char **arr)
 	}
 }
 
+void	print_colorcode(int *color)
+{
+	int	i;
+
+	i = 0;
+	while (i < 3)
+	{
+		ft_printf("%d, ", color[i]);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -33,9 +45,8 @@ int	main(int argc, char **argv)
 	init(&data);
 	if (parsing(argv[1], &data))
 		return (1);
-	free_array(data.scenery.scene);
 	print_array(data.textures.north);
-	if (data.textures.north)
-		free_array(data.textures.north);
+	print_colorcode(data.textures.floor);
+	squeaky_clean(&data);
 	return (0);
 }

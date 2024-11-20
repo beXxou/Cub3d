@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:56:47 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/14 15:56:17 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 13:20:54 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	init_textures(t_textures *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
+	textures->floor = NULL;
+	textures->ceiling = NULL;
 }
 
 void	init(t_data *data)

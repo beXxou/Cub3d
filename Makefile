@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+         #
+#    By: joschka <joschka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 11:18:15 by joschka           #+#    #+#              #
-#    Updated: 2024/11/14 16:00:51 by jbeck            ###   ########.fr        #
+#    Updated: 2024/11/20 15:45:36 by joschka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS	:=	./src/main.c \
 			./src/parsing/check_scene.c \
 			./src/delete_and_error.c \
 			./src/parsing/get_textures.c \
+			./src/parsing/get_colors.c \
 			
 OBJS	:= ${SRCS:.c=.o}
 

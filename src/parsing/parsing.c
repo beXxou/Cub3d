@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:00:57 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/15 13:25:51 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:16:19 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ int	parsing(char *path, t_data *data)
 	data->scenery.s_path = path;
 	if (get_scene(&data->scenery))
 		return (1);
-	if (check_elements(data->scenery.scene) 
+	if (check_elements(data->scenery.scene)
 		|| map_last(data->scenery.scene)
-		|| get_textures(data))
+		|| get_textures(data)
+		|| get_colors(data))
 	{
-		free_array(data->scenery.scene);
+		squeaky_clean(data);
 		return (1);
 	}
-	print_array(data->scenery.scene);
 	return (0);
 }

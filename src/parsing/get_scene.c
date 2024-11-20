@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_scene.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:27 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/14 13:19:27 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:19:05 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,22 +98,16 @@ static int	fill_scene(t_scenery *scenery)
 	return (0);
 }
 
-int get_scene(t_scenery *scenery)
+int	get_scene(t_scenery *scenery)
 {
 	scenery->lcount = get_linenumber(scenery->s_path);
 	scenery->scene = malloc((scenery->lcount + 1) * sizeof(char *));
 	if (!scenery->scene)
-	{
-		print_error(NULL, strerror(errno), errno);
-		return (1);
-	}
+		return (print_error(NULL, strerror(errno), errno));
 	scenery->fd = open(scenery->s_path, O_RDONLY);
 	if (scenery->fd == -1)
 		return (print_error(scenery->s_path, strerror(errno), errno));
 	if (fill_scene(scenery))
-	{
-		free(scenery->scene);
 		return (1);
-	}
 	return (0);
 }

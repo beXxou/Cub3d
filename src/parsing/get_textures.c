@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:43:40 by jbeck             #+#    #+#             */
-/*   Updated: 2024/11/15 13:23:32 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 16:18:45 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3d.h"
+#include "cub3d.h"
 
 static int	check_xpm_extension(char *path)
 {
@@ -42,51 +42,35 @@ static int	check_xpm_file(char *path)
 	return (0);
 }
 
-void	cut_newline(char **arr)
-{
-	int		len;
-	char	*tmp;
-	
-	len = ft_strlen(arr[1]);
-	if (arr[1][len - 1] == '\n')
-	{
-		tmp = malloc((len) * sizeof(char));
-		ft_strlcpy(tmp, arr[1], len );
-		free(arr[1]);
-		arr[1] = tmp;
-		print_array(arr);
-	}
-}
-
-int	check_array(char **arr)
+static int	check_array(char **arr)
 {
 	int	i;
 
 	i = 0;
-	while(arr[i])
+	while (arr[i])
 	{
-		ft_printf("heeee\n");
 		if (i == 1)
 			cut_newline(arr);
 		if (i == 1 && check_xpm_file(arr[i]))
 			return (1);
 		i++;
 	}
+	if (i == 1)
+		return (print_error(arr[0], ERR_TEX, 1));
+	if (i > 2)
+		return (print_error(arr[0], ERR_TEXT, 1));
 	return (0);
 }
 
-int	save_texture(char *str, char **arr)
+static int	save_texture(char *str, char ***arr)
 {
-	if (arr)
-		free_array(arr);
-	arr = ft_split(str, ' ');
-	if (!arr)
+	if (*arr)
+		free_array(*arr);
+	*arr = ft_split(str, ' ');
+	if (!*arr)
 		return (1);
-	if (check_array(arr))
-	{
-		free_array(arr);
+	if (check_array(*arr))
 		return (1);
-	}
 	return (0);
 }
 
@@ -107,7 +91,13 @@ int	get_textures(t_data *data)
 			break ;
 		j = skip_whitespace(arr[i]);
 		if (!ft_strncmp(&arr[i][j], "NO", 2) && !ret)
-			ret = save_texture(arr[i], data->textures.north);
+			ret = save_texture(arr[i], &data->textures.north);
+		if (!ft_strncmp(&arr[i][j], "SO", 2) && !ret)
+			ret = save_texture(arr[i], &data->textures.south);
+		if (!ft_strncmp(&arr[i][j], "EA", 2) && !ret)
+			ret = save_texture(arr[i], &data->textures.east);
+		if (!ft_strncmp(&arr[i][j], "WE", 2) && !ret)
+			ret = save_texture(arr[i], &data->textures.west);
 		i++;
 	}
 	return (ret);

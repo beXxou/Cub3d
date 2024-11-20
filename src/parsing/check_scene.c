@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
+/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:32:19 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/14 14:56:14 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/11/20 13:47:52 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	check_elements(char **scene)
 	while (scene[i])
 	{
 		j = skip_whitespace(scene[i]);
-		if (!ft_strncmp(&scene[i][j], "NO", 2)
-			|| !ft_strncmp(&scene[i][j], "SO", 2)
-			|| !ft_strncmp(&scene[i][j], "WE", 2)
-			|| !ft_strncmp(&scene[i][j], "EA", 2)
-			|| !ft_strncmp(&scene[i][j], "F", 1)
-			|| !ft_strncmp(&scene[i][j], "C", 1)
+		if (!ft_strncmp(&scene[i][j], "NO ", 3)
+			|| !ft_strncmp(&scene[i][j], "SO ", 3)
+			|| !ft_strncmp(&scene[i][j], "WE ", 3)
+			|| !ft_strncmp(&scene[i][j], "EA ", 3)
+			|| !ft_strncmp(&scene[i][j], "F ", 2)
+			|| !ft_strncmp(&scene[i][j], "C ", 2)
 			|| !ft_strncmp(&scene[i][j], "1", 1)
 			|| !ft_strncmp(&scene[i][j], "0", 1))
 			i++;
