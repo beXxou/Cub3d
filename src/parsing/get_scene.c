@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:27 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 16:19:05 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 10:00:34 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static int	emptystr(char *str)
 	while (str[i] && flag == 1)
 	{
 		if (str[i] == ' ' || str[i] == '\n'
-			|| str[i] == '\t' || str[i] == '\v')
+			|| str[i] == '\t' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r')
 			i++;
 		else
 			flag = 0;

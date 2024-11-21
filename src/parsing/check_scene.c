@@ -6,19 +6,18 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:32:19 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 13:47:52 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:44:04 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	skip_whitespace(char *str)
+int	skip_space(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && (str[i] == ' ' || str[i] == '\n'
-			|| str[i] == '\t' || str[i] == '\v'))
+	while (str[i] && str[i] == ' ')
 		i++;
 	return (i);
 }
@@ -31,18 +30,17 @@ int	check_elements(char **scene)
 	i = 0;
 	while (scene[i])
 	{
-		j = skip_whitespace(scene[i]);
+		j = skip_space(scene[i]);
 		if (!ft_strncmp(&scene[i][j], "NO ", 3)
 			|| !ft_strncmp(&scene[i][j], "SO ", 3)
 			|| !ft_strncmp(&scene[i][j], "WE ", 3)
 			|| !ft_strncmp(&scene[i][j], "EA ", 3)
 			|| !ft_strncmp(&scene[i][j], "F ", 2)
 			|| !ft_strncmp(&scene[i][j], "C ", 2)
-			|| !ft_strncmp(&scene[i][j], "1", 1)
-			|| !ft_strncmp(&scene[i][j], "0", 1))
+			|| !ft_strncmp(&scene[i][j], "1", 1))
 			i++;
 		else
-			return (print_error(NULL, ERR_ELEMENT, 1));
+			return (print_error(ERR_ELEMENT, ERR_LABORD, 1));
 	}
 	return (0);
 }
@@ -74,7 +72,7 @@ int	map_last(char **scene)
 	mapflag = 0;
 	while (scene[i])
 	{
-		j = skip_whitespace(scene[i]);
+		j = skip_space(scene[i]);
 		if (!strncmp(&scene[i][j], "1", 1))
 			mapflag = 1;
 		if (mapflag && strncmp(&scene[i][j], "1", 1))

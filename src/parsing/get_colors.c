@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:21:17 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 16:19:38 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:42:09 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	get_colors(t_data *data)
 	{
 		if (ret)
 			break ;
-		j = skip_whitespace(arr[i]);
+		j = skip_space(arr[i]);
 		if (!ft_strncmp(&arr[i][j], "F", 1) && !ret)
 			ret = set_colors(&arr[i][j], &data->textures.floor);
 		if (!ft_strncmp(&arr[i][j], "C", 1) && !ret)

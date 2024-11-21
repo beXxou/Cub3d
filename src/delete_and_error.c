@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:25:32 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 16:07:39 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 16:42:18 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	squeaky_clean(t_data *data)
 		free(data->textures.floor);
 	if (data->textures.ceiling)
 		free(data->textures.ceiling);
+	if (data->map.map_tab)
+		free_array(data->map.map_tab);
 }
 
 int	print_error(char *src, char *str, int errcode)

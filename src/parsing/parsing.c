@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:00:57 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 16:16:19 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 19:29:40 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ int	parsing(char *path, t_data *data)
 	if (check_elements(data->scenery.scene)
 		|| map_last(data->scenery.scene)
 		|| get_textures(data)
-		|| get_colors(data))
+		|| get_colors(data)
+		|| get_map(data)
+		|| check_map(&data->map))
 	{
 		squeaky_clean(data);
 		return (1);

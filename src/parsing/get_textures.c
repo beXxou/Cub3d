@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 14:43:40 by jbeck             #+#    #+#             */
-/*   Updated: 2024/11/20 16:18:45 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 14:41:55 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	get_textures(t_data *data)
 	{
 		if (ret)
 			break ;
-		j = skip_whitespace(arr[i]);
+		j = skip_space(arr[i]);
 		if (!ft_strncmp(&arr[i][j], "NO", 2) && !ret)
 			ret = save_texture(arr[i], &data->textures.north);
 		if (!ft_strncmp(&arr[i][j], "SO", 2) && !ret)

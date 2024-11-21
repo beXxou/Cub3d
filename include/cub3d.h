@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:47:53 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/20 15:11:15 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/21 19:44:58 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@
 # define ERR_TEX "please provide path to texture"
 # define ERR_TE "element has too few arguments"
 # define ERR_COLOR "invalid color code"
+# define ERR_MAP "no valid map in .cub file found"
+
+typedef struct s_map
+{
+	int		width;
+	int		height;
+	char	**map_tab;
+	int		not_surrounded;
+}	t_map;
 
 typedef struct s_textures
 {
@@ -54,19 +63,25 @@ typedef struct s_data
 {
 	t_scenery	scenery;
 	t_textures	textures;
+	t_map		map;
 }	t_data;
 
 void	init(t_data *data);
 void	squeaky_clean(t_data *data);
 int		parsing(char *path, t_data *data);
 int		print_error(char *src, char *str, int errcode);
-int		skip_whitespace(char *str);
+int		skip_space(char *str);
 void	free_array(char **arr);
 int		get_scene(t_scenery *scenery);
+void	cut_newline(char **arr);
 int		check_elements(char **scene);
 int		map_last(char **scene);
 int		get_textures(t_data *data);
 int		get_colors(t_data *data);
+int		get_map(t_data *data);
+int		find_mapstart(char **arr);
+int		check_map(t_map *map);
+
 
 // DEBUG
 void	print_array(char **arr);
