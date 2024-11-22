@@ -6,13 +6,13 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 13:21:17 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 14:42:09 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:38:59 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_number(int number, char *str)
+static int	check_number(int number, char *str)
 {
 	int	i;
 	int	flag;
@@ -30,7 +30,7 @@ int	check_number(int number, char *str)
 	return (flag);
 }
 
-int	*convert_color(char **arr, int *color)
+static int	*convert_color(char **arr, int *color)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ int	*convert_color(char **arr, int *color)
 	return (color);
 }
 
-int	*check_colors(char *str)
+static int	*check_colors(char *str)
 {
 	char	**tmp;
 	int		i;
@@ -79,7 +79,7 @@ int	*check_colors(char *str)
 	return (convert_color(tmp, colors));
 }
 
-int	set_colors(char *str, int **ptr)
+static int	set_colors(char *str, int **ptr)
 {
 	char	**arr;
 	int		i;

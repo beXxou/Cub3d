@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:56:47 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 19:42:42 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:18:21 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_map(t_map *map)
 	map->height = 0;
 	map->map_tab = NULL;
 	map->not_surrounded = 0;
+	map->player_count = 0;
 }
 
 void	init_scenery(t_scenery *scenery)

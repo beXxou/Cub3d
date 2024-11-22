@@ -6,13 +6,13 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 09:53:46 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 19:44:19 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:38:54 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	get_width(char **arr)
+static int	get_width(char **arr)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ int	get_width(char **arr)
 	return (max);
 }
 
-int	get_height(char **arr)
+static int	get_height(char **arr)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ int	get_height(char **arr)
 	return (i);
 }
 
-void	fill_str(t_map *map, char **arr, int i)
+static void	fill_str(t_map *map, char **arr, int i)
 {
 	int	j;
 
@@ -63,7 +63,7 @@ void	fill_str(t_map *map, char **arr, int i)
 	map->map_tab[i][map->width] = '\0';
 }
 
-int	fill_map(t_map *map, char **scene)
+static int	fill_map(t_map *map, char **scene)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:17:09 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 19:25:41 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:36:25 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,11 @@ int	find_mapstart(char **arr)
 		i++;
 	}
 	return (-1);
+}
+
+int	is_player(char c)
+{
+	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
 }

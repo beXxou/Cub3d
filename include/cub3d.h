@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:47:53 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 19:44:58 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:43:15 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define ERR_TE "element has too few arguments"
 # define ERR_COLOR "invalid color code"
 # define ERR_MAP "no valid map in .cub file found"
+# define ERR_WALL "map is not surrounded by walls"
+# define ERR_PLAYCOUNT "there has to be exactly one player"
 
 typedef struct s_map
 {
@@ -38,6 +40,7 @@ typedef struct s_map
 	int		height;
 	char	**map_tab;
 	int		not_surrounded;
+	int		player_count;
 }	t_map;
 
 typedef struct s_textures
@@ -49,7 +52,6 @@ typedef struct s_textures
 	int		*floor;
 	int		*ceiling;
 }	t_textures;
-
 
 typedef struct s_scenery
 {
@@ -81,7 +83,7 @@ int		get_colors(t_data *data);
 int		get_map(t_data *data);
 int		find_mapstart(char **arr);
 int		check_map(t_map *map);
-
+int		is_player(char c);
 
 // DEBUG
 void	print_array(char **arr);
