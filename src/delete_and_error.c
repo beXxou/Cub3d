@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:25:32 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/21 16:42:18 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:58:48 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	free_array(char **arr)
 	}
 	free(arr);
 	arr = NULL;
+}
+
+void	clean_exit(t_data *data, int code)
+{
+	squeaky_clean(data);
+	exit(code);
 }
 
 void	squeaky_clean(t_data *data)

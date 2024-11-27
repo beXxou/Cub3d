@@ -6,7 +6,7 @@
 /*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:47:53 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/22 11:43:15 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:18:07 by joschka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@
 # define ERR_MAP "no valid map in .cub file found"
 # define ERR_WALL "map is not surrounded by walls"
 # define ERR_PLAYCOUNT "there has to be exactly one player"
+
+# define WIDTH 1280
+# define HEIGHT 720
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+}	t_game;
 
 typedef struct s_map
 {
@@ -66,6 +76,7 @@ typedef struct s_data
 	t_scenery	scenery;
 	t_textures	textures;
 	t_map		map;
+	t_game		game;
 }	t_data;
 
 void	init(t_data *data);
@@ -84,8 +95,10 @@ int		get_map(t_data *data);
 int		find_mapstart(char **arr);
 int		check_map(t_map *map);
 int		is_player(char c);
+void	game(t_data *data);
 
 // DEBUG
 void	print_array(char **arr);
+void	print_colorcode(int *color);
 
 #endif

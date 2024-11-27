@@ -6,7 +6,7 @@
 #    By: joschka <joschka@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 11:18:15 by joschka           #+#    #+#              #
-#    Updated: 2024/11/21 19:29:36 by joschka          ###   ########.fr        #
+#    Updated: 2024/11/22 16:17:34 by joschka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRCS	:=	./src/main.c \
 			./src/parsing/utils.c \
 			./src/parsing/get_map.c \
 			./src/parsing/check_map.c \
+			./src/game/game.c \
 			
 OBJS	:= ${SRCS:.c=.o}
 
