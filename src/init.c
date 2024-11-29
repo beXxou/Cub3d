@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:56:47 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/22 16:11:09 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/29 18:06:37 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_game(t_game *game)
-{
-	game->mlx = NULL;
-	game->win = NULL;
-	game->img = NULL;
-}
 
 void	init_map(t_map *map)
 {

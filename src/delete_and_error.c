@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_and_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: joschka <joschka@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:25:32 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/22 15:58:48 by joschka          ###   ########.fr       */
+/*   Updated: 2024/11/28 17:51:30 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	squeaky_clean(t_data *data)
 		free(data->textures.ceiling);
 	if (data->map.map_tab)
 		free_array(data->map.map_tab);
+	if (data->game.mlx)
+		free(data->game.mlx);
 }
 
 int	print_error(char *src, char *str, int errcode)
