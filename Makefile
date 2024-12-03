@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: joschka <joschka@student.42.fr>            +#+  +:+       +#+         #
+#    By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 11:18:15 by joschka           #+#    #+#              #
-#    Updated: 2024/11/22 16:17:34 by joschka          ###   ########.fr        #
+#    Updated: 2024/12/03 17:48:37 by jbeck            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS	:=	./src/main.c \
 			./src/parsing/get_map.c \
 			./src/parsing/check_map.c \
 			./src/game/game.c \
+			./src/game/debug.c \
 			
 OBJS	:= ${SRCS:.c=.o}
 

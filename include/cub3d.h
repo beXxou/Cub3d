@@ -6,7 +6,7 @@
 /*   By: jbeck <jbeck@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:47:53 by joschka           #+#    #+#             */
-/*   Updated: 2024/11/29 18:06:18 by jbeck            ###   ########.fr       */
+/*   Updated: 2024/12/03 18:20:34 by jbeck            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@
 # define ERR_WALL "map is not surrounded by walls"
 # define ERR_PLAYCOUNT "there has to be exactly one player"
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 768
+# define HEIGHT 640
+
+# define DEBUG 1
 
 # define ESC 65307
 # define W 119
@@ -117,5 +119,9 @@ void	game(t_data *data);
 // DEBUG
 void	print_array(char **arr);
 void	print_colorcode(int *color);
+void	draw_map(t_data *data);
+void	draw_square(int x, int y, int size, t_game *game);
+void	color_screen(t_data *data, int color);
+void	my_pixel_put(t_img *img, int x, int y, int color);
 
 #endif
